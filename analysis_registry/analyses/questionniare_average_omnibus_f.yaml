@@ -19,11 +19,12 @@ other_files:
   - "runs individual paired randomise tests: submis_randomise_all_pairs.batch"
 output_dir: "/oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_question_estimates/"
 hypothesis: "Some questionnaire-based average activation estimates will differ from others."
-conclusion: "There is a strong result for the omnibus f-test, but the individual t-tests don't offer much help in interpretation."
+conclusion: "There is a strong result for the omnibus f-test, but Patrick needs to review the individual paired comparisons."
 notes: >
-  The paired comparisons can be used to conclude where differences DO occur, but a lack of a significant paired t-test
+  See review_results.ipynb in associated directory to review the results. The paired comparisons can be used to conclude where differences 
+  DO occur, but a lack of a significant paired t-test
   cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer
   questions have less power in these comparisons.
-status: "needs review by Patrick"
+status: "Needs review by Patrick"
 last_updated: 2025-11-25
 authors: ["Jeanette Mumford", "Jaemon Jumpawong"]
