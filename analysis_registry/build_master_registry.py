@@ -82,10 +82,10 @@ def write_markdown_summary(entries, output_file: Path):
 
         # Stage header row
         md_lines.append(
-            f'<tr><td colspan="5"><strong>{stage.title()}</strong></td></tr>'
+            f'<tr><th colspan="5" style="background-color:#f2f2f2; font-size:1.1em;">{stage.title()}</th></tr>'
         )
         md_lines.append(
-            '<tr><th>ID</th><th>Description</th><th>Status</th><th>Result Files</th><th>Notes</th></tr>'
+            '<tr><th>ID</th><th>Description</th><th>Status</th><th>Results Files</th><th>Notes</th></tr>'
         )
 
         for e in stage_entries:
@@ -94,13 +94,13 @@ def write_markdown_summary(entries, output_file: Path):
             status = clean_text_field(e.get('status'))
             pretty_id = e.get('id', 'None').replace('_', ' ')
 
-            # Result files
-            result_files = e.get('result_files') or []
-            if result_files:
+            # Results files
+            results_files = e.get('results_files') or []
+            if results_files:
                 links = ', '.join(
                     [
                         f'<a href="../analyses/{pretty_id.replace(" ", "_")}/{rf}">{rf}</a>'
-                        for rf in result_files
+                        for rf in results_files
                     ]
                 )
             else:
@@ -157,7 +157,7 @@ def write_markdown_summary(entries, output_file: Path):
                 )
             else:
                 rf_links = 'None'
-            md_lines.append(f'**Result Files:** {rf_links}<br>')
+            md_lines.append(f'**Results Files:** {rf_links}<br>')
 
             md_lines.append(
                 f'**Hypothesis:** {clean_text_field(e.get("hypothesis"))}<br>'

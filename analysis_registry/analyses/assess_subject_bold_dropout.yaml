@@ -21,8 +21,7 @@ hypothesis: "Some subjects with poor data may have been missed during MRIQC eval
 conclusion: "Two subjects were identified for removal due to poor coverage caused by bad data quality (see notebook for details)."
 notes: >
   For time series analyses used subjects listed in preanalysis_good_subject_list.txt (in associated analysis directory).  
-  A mask for group (randomise) analyses is created in this code and is in 
-  .../survey_medley_results/assess_subject_bold_dropout/group_mask_intersection_30pct.nii.gz.
+  A mask for group (randomise) analyses is created in this code base (see other files section for mask location.)
 status: "completed"
 last_updated: "2025-11-23"
 authors: ["Jeanette Mumford"]

@@ -14,7 +14,7 @@ script_entry:
 notebook_entry:
   - "setup_randomise.ipynb"
   - "review_results.ipynb"
-result_files:
+results_files:
   - "review_results.ipynb"
 other_files:
   - "runs f-test randomise script: submit_randomise.batch"
@@ -23,10 +23,10 @@ output_dir: "/oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medl
 hypothesis: "Some questionnaire-based average activation estimates will differ from others."
 conclusion: "There is a strong result for the omnibus f-test, but Patrick needs to review the individual paired comparisons."
 notes: >
-  **See review_results.ipynb** in associated directory to review the results. The paired comparisons can be used to conclude where differences 
+  The paired comparisons can be used to conclude where differences 
   DO occur, but a lack of a significant paired t-test
   cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer
   questions have less power in these comparisons.
-status: "Needs review by Patrick"
+status: "Results files needs review by Patrick"
 last_updated: 2025-11-25
 authors: ["Jeanette Mumford", "Jaemon Jumpawong"]

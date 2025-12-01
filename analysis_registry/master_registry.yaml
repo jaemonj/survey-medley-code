@@ -23,7 +23,7 @@
     by bad data quality (see notebook for details).
   notes: 'For time series analyses used subjects listed in preanalysis_good_subject_list.txt
     (in associated analysis directory).   A mask for group (randomise) analyses is
-    created in this code and is in  .../survey_medley_results/assess_subject_bold_dropout/group_mask_intersection_30pct.nii.gz.
+    created in this code base (see other files section for mask location.)
 
     '
   status: completed
@@ -100,7 +100,7 @@
   notebook_entry:
   - setup_randomise.ipynb
   - review_results.ipynb
-  result_files:
+  results_files:
   - review_results.ipynb
   other_files:
   - 'runs f-test randomise script: submit_randomise.batch'
@@ -110,14 +110,13 @@
     others.
   conclusion: There is a strong result for the omnibus f-test, but Patrick needs to
     review the individual paired comparisons.
-  notes: '**See review_results.ipynb** in associated directory to review the results.
-    The paired comparisons can be used to conclude where differences  DO occur, but
-    a lack of a significant paired t-test cannot be used to conclude two questionnaires
+  notes: 'The paired comparisons can be used to conclude where differences  DO occur,
+    but a lack of a significant paired t-test cannot be used to conclude two questionnaires
     are the same.  Keep in mind that questionnaires with fewer questions have less
     power in these comparisons.
 
     '
-  status: Needs review by Patrick
+  status: Results files needs review by Patrick
   last_updated: 2025-11-25
   authors:
   - Jeanette Mumford
