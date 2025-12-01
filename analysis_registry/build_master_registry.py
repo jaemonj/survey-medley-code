@@ -69,15 +69,121 @@ def sort_by_stage(entries):
 
 
 def write_markdown_summary(entries, output_file: Path):
+    md_lines = ['# Master Analysis Registry\n']
+
+    # --- Summary Table ---
+    md_lines.append('## Summary\n')
+    md_lines.append('<table>')
+
+    for stage in STAGE_ORDER:
+        stage_entries = [e for e in entries if e.get('stage') == stage]
+        if not stage_entries:
+            continue
+
+        # Stage header row
+        md_lines.append(
+            f'<tr><td colspan="5"><strong>{stage.title()}</strong></td></tr>'
+        )
+        md_lines.append(
+            '<tr><th>ID</th><th>Description</th><th>Status</th><th>Result Files</th><th>Notes</th></tr>'
+        )
+
+        for e in stage_entries:
+            desc = clean_text_field(e.get('description'))
+            notes = clean_text_field(e.get('notes'))
+            status = clean_text_field(e.get('status'))
+            pretty_id = e.get('id', 'None').replace('_', ' ')
+
+            # Result files
+            result_files = e.get('result_files') or []
+            if result_files:
+                links = ', '.join(
+                    [
+                        f'<a href="../analyses/{pretty_id.replace(" ", "_")}/{rf}">{rf}</a>'
+                        for rf in result_files
+                    ]
+                )
+            else:
+                links = 'None'
+
+            md_lines.append(
+                f'<tr><td>{pretty_id}</td><td>{desc}</td><td>{status}</td><td>{links}</td><td>{notes}</td></tr>'
+            )
+
+    md_lines.append('</table>\n---\n')
+    md_lines.append('## Detailed Reports\n')
+
+    for stage in STAGE_ORDER:
+        stage_entries = [e for e in entries if e.get('stage') == stage]
+        if not stage_entries:
+            continue
+
+        md_lines.append(f'\n## {stage.title()}\n')
+        for e in stage_entries:
+            pretty_id = e.get('id', 'Unknown ID')
+            md_lines.append(f'### {pretty_id}')
+
+            md_lines.append(f'**Name:** {clean_text_field(e.get("name"))}<br>')
+            md_lines.append(
+                f'**Description:** {clean_text_field(e.get("description"))}<br>'
+            )
+            md_lines.append(
+                f'**Code Directory:** {clean_text_field(e.get("code_dir"))}<br>'
+            )
+            md_lines.append(
+                f'**Dependencies:** {stringify_entry(e.get("dependencies"))}<br>'
+            )
+            md_lines.append(
+                f'**Script Entry:** {stringify_entry(e.get("script_entry"))}<br>'
+            )
+            md_lines.append(
+                f'**Notebook Entry:** {stringify_entry(e.get("notebook_entry"))}<br>'
+            )
+            md_lines.append(
+                f'**Other Files:** {stringify_entry(e.get("other_files"))}<br>'
+            )
+            md_lines.append(
+                f'**Output Directory:** {stringify_entry(e.get("output_dir"))}<br>'
+            )
+
+            # Result files in detailed section
+            result_files = e.get('result_files') or []
+            if result_files:
+                rf_links = ', '.join(
+                    [
+                        f'<a href="../analyses/{pretty_id.replace(" ", "_")}/{rf}">{rf}</a>'
+                        for rf in result_files
+                    ]
+                )
+            else:
+                rf_links = 'None'
+            md_lines.append(f'**Result Files:** {rf_links}<br>')
+
+            md_lines.append(
+                f'**Hypothesis:** {clean_text_field(e.get("hypothesis"))}<br>'
+            )
+            md_lines.append(
+                f'**Conclusion:** {clean_text_field(e.get("conclusion"))}<br>'
+            )
+            md_lines.append(f'**Notes:** {clean_text_field(e.get("notes"))}<br>')
+            md_lines.append(f'**Status:** {clean_text_field(e.get("status"))}<br>')
+            md_lines.append(
+                f'**Last Updated:** {clean_text_field(e.get("last_updated"))}<br>'
+            )
+            md_lines.append(f'**Authors:** {stringify_entry(e.get("authors"))}<br>')
+            md_lines.append('\n---\n')
+
+    with open(output_file, 'w') as f:
+        f.write('\n'.join(md_lines))
+
+
+def write_markdown_summary_OLD(entries, output_file: Path):
     """Write a Markdown summary with sectioned tables and sectioned detailed reports."""
     md_lines = ['# Master Analysis Registry\n']
 
     # --- Summary Table ---
     md_lines.append('## Summary\n')
     md_lines.append('<table>')
-    md_lines.append(
-        '<tr><th>ID</th><th>Description</th><th>Status</th><th>Notes</th></tr>'
-    )
 
     for stage in STAGE_ORDER:
         stage_entries = [e for e in entries if e.get('stage') == stage]
@@ -87,6 +193,9 @@ def write_markdown_summary(entries, output_file: Path):
         # Stage header row spanning all columns
         md_lines.append(
             f'<tr><td colspan="4"><strong>{stage.title()}</strong></td></tr>'
+        )
+        md_lines.append(
+            '<tr><th>ID</th><th>Description</th><th>Status</th><th>Notes</th></tr>'
         )
 
         for e in stage_entries:
@@ -113,7 +222,6 @@ def write_markdown_summary(entries, output_file: Path):
             continue
 
         md_lines.append(f'\n## {stage.title()}\n')
-
         for e in stage_entries:
             md_lines.append(f'### {e.get("id", "Unknown ID")}')
 
