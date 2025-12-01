@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --job-name=within_subject_question
+#SBATCH --output=/oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code/log/mask_assess_%A_%a.out
+#SBATCH --error=/oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code/log/mask_assess_%A_%a.err
+#SBATCH --time=01:00:00
+#SBATCH -p russpold,hns,normal
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=48G
+
+PROJECT_ROOT="/oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code"
+SCRIPT_DIR="$PROJECT_ROOT/analyses/assess_subject_bold_dropout"
+UV_SETUP="$PROJECT_ROOT/setup_uv_sherlock.sh"
+
+source $UV_SETUP
+
+
+
+uv --directory "$PROJECT_ROOT" run "$SCRIPT_DIR/visualize_masker_on_mean_bold.py"
+
+
+
+

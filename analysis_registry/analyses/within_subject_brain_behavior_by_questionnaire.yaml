@@ -1,0 +1,23 @@
+id: within_subject_brain_behavior_by_questionnaire
+name: Assess within-subject brain-behavior slopes in each questionnaire
+stage: "time series and group"
+description: >
+    Estimate the within-subject slope between brain activation and behavioral response
+    separately for each questionnaire.
+code_dir: "analyses/within_subject_brain_behavior_by_questionnaire"
+dependencies: []
+script_entry:
+    - "questionnaire_brain_behavior_contrasts_outlier_analysis.py"
+    - "run_outlier_analysis.batch"
+notebook_entry:
+    - "brain_behavior_within_subject_by_questionnaire.ipynb"
+other_files: []
+output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire"
+hypothesis: "Some brain/behavior slopes are statistically different between questionnaires."
+conclusion: >
+    Still under discussion, but the F-test yielded some significant regions, 
+    some of which overlapped with the regions found in the within-subject brain-behavior analysis with all questions.
+notes: null
+status: "completed"
+last_updated: 2025-11-16
+authors: ["Jaemon Jumpawong", "Jeanette Mumford"]

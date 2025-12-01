@@ -1,0 +1,167 @@
+- id: assess_subject_bold_dropout
+  name: Check nifti masker mask overlap to assess subject dropout
+  stage: preprocessing
+  description: 'The overlap of the individual masker masks with a generous aggregate
+    mask (voxels with data for at least half of the subjects) is used to identify
+    subjects with poor coverage that may be considered for  removal. A final list
+    of subjects to use in first-level analyses is created.
+
+    '
+  code_dir: analyses/assess_subject_bold_dropout
+  dependencies: []
+  script_entry:
+  - visualize_masker_on_mean_bold.py
+  - submit_visualize_masker_on_mean_bold.py
+  notebook_entry:
+  - generate_good_subject_list.ipynb
+  other_files:
+  - analyses/assess_subject_bold_dropout/preanalysis_good_subject_list.txt
+  output_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/assess_subject_bold_dropout/nifti_masker_masks
+  hypothesis: Some subjects with poor data may have been missed during MRIQC evaluation.
+  conclusion: Two subjects were identified for removal due to poor coverage caused
+    by bad data quality (see notebook for details).
+  notes: Start analyses with subjects in preanalysis_good_subject_list.txt (in associated
+    analysis directory)
+  status: completed
+  last_updated: '2025-11-23'
+  authors:
+  - Jeanette Mumford
+- id: create_events_modified
+  name: Modify events files to create consistent scale and adjust question codings
+  stage: preprocessing
+  description: "Modified the events files in order to make all responses on a scale\
+    \ of 0\u20131, and code the responses such that a higher response corresponded\
+    \ to greater self-regulation.\n"
+  code_dir: analyses/create_events_modified
+  dependencies: []
+  script_entry:
+  - fix_codings.py
+  notebook_entry: null
+  other_files: []
+  output_dir: null
+  hypothesis: null
+  conclusion: null
+  notes: null
+  status: completed
+  last_updated: 2025-11-18
+  authors:
+  - Jaemon Jumpawong
+- id: questionnaire_brain_behavior_slope_ftest
+  name: Assess how within-subject brain-behavior slopes differ between questionnaires
+  stage: group
+  description: 'Run an F-test on the within-subject slopes between brain activation
+    and behavioral response for each questionnaire,  to see whether any within-questionnaire
+    slopes are statistically different from each other.
+
+    '
+  code_dir: analyses/questionnaire_brain_behavior_slope_ftest
+  dependencies:
+  - analyses/within_subject_brain_behavior_by_questionnaire
+  script_entry: []
+  notebook_entry:
+  - run_ftest.ipynb
+  other_files: []
+  output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest
+  hypothesis: Some within-questionnaire slopes statistically differ from each other
+    in some parts of the brain.
+  conclusion: 'Still under discussion, but the F-test yielded some significant regions,  some
+    of which overlapped with the regions found in the within-subject brain-behavior
+    analysis with all questions.
+
+    '
+  notes: null
+  status: ongoing
+  last_updated: 2025-11-16
+  authors:
+  - Jaemon Jumpawong
+  - Jeanette Mumford
+- id: within_subject_brain_behavior_analysis
+  name: Assess within-subject brain-behavior correlations
+  stage: time series
+  description: 'Estimate the average of the within-subject correlation between brain  activation
+    and behavioral response across all questions.
+
+    '
+  code_dir: analyses/within_subject_brain_behavior_analysis
+  dependencies: []
+  script_entry:
+  - within_subject_brain_behavior_outlier_analysis.py
+  - run_outlier_analysis.batch
+  - submit_randomise.sh
+  notebook_entry:
+  - analyze_brain_behavior_within_subject.ipynb
+  other_files: []
+  output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis
+  hypothesis: Within-subject brain activation linearly relates to their behavioral
+    response.
+  conclusion: 'There are regions with a significant negative correlation between brain
+    activation and behavioral response (across all questions), suggesting that these
+    regions are more activated when giving a response coded as less self-regulated.
+
+    '
+  notes: null
+  status: completed
+  last_updated: 2025-11-16
+  authors:
+  - Jaemon Jumpawong
+  - Jeanette Mumford
+- id: within_subject_brain_behavior_by_questionnaire
+  name: Assess within-subject brain-behavior slopes in each questionnaire
+  stage: time series and group
+  description: 'Estimate the within-subject slope between brain activation and behavioral
+    response separately for each questionnaire.
+
+    '
+  code_dir: analyses/within_subject_brain_behavior_by_questionnaire
+  dependencies: []
+  script_entry:
+  - questionnaire_brain_behavior_contrasts_outlier_analysis.py
+  - run_outlier_analysis.batch
+  notebook_entry:
+  - brain_behavior_within_subject_by_questionnaire.ipynb
+  other_files: []
+  output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire
+  hypothesis: Some brain/behavior slopes are statistically different between questionnaires.
+  conclusion: 'Still under discussion, but the F-test yielded some significant regions,  some
+    of which overlapped with the regions found in the within-subject brain-behavior
+    analysis with all questions.
+
+    '
+  notes: null
+  status: completed
+  last_updated: 2025-11-16
+  authors:
+  - Jaemon Jumpawong
+  - Jeanette Mumford
+- id: within_subject_question_estimates
+  name: Estimate question and questionnaire activation estimates and QA
+  stage: time series
+  description: 'This analysis runs time series models for all subjects to estimate
+    question-specific estimates as well as questionnaire-specific estimates. For the
+    questionnaire averages, all question estimates were included, regardless of whether
+    the subject responded or had an acceptable key press.   Contrast estimates filenames
+    include "err" if they did not respond or used an unacceptable key for that question.
+
+    '
+  code_dir: analyses/within_subject_question_estimates
+  dependencies: []
+  script_entry:
+  - timeseries_model.py
+  notebook_entry:
+  - make_subid_text_file.ipynb
+  - qa_outputs.ipynb
+  output_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_results
+  hypothesis: No formal hypothesis at this stage; just calculating estimates for group
+    analyses to study questionnaire differences.
+  conclusion: The outlier assessment worked well and we have at least 93 good data
+    sets for each question/questionnaire.
+  notes: 'There are lists in text files indicating the good subjects for each contrast
+    (based on the outlier assessment)  located in the outlier_assessment subdirectory
+    within the output directory.
+
+    '
+  status: complete
+  last_updated: 2025-11-20
+  authors:
+  - Jeanette Mumford
+  - Jaemon Jumpawong

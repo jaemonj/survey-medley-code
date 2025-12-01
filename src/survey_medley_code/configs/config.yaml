@@ -1,0 +1,21 @@
+data_root: /oak/stanford/groups/russpold/data/uh2/aim1
+fmriprep_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/fmriprep
+bids_dir: /oak/stanford/groups/russpold/data/uh2/aim1/BIDS
+output_root: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/
+# These three fields are used together to build the file path pattern for locating BOLD fMRI data.
+# Because session numbers can vary, we use wildcards ("ses*") in the folder path.
+# The expected data files are located under each subject's directory, in:
+#   ses*/func/*<task_name>*preproc_bold.nii.gz
+# For example, with task_name "surveyMedley", the full glob would be:
+#   ses*/func/*surveyMedley*preproc_bold.nii.gz
+# The full glob pattern is constructed in the paths dataclass.
+task_name: "surveyMedley"
+bold_func_glob: "ses*/func/"
+bold_data_suffix: "*MNI152NLin2009cAsym_desc-preproc_bold.nii.gz"
+mask_data_suffix: "*MNI152NLin2009cAsym_desc-brain_mask.nii.gz"
+behav_func_glob: "ses*/func/"
+behav_data_suffix: "*events_modified.tsv"
+# ROI mask location
+masks_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/masks
+tr: 0.68
+smoothing_fwhm: 5

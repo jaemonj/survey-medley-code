@@ -1,0 +1,19 @@
+id: create_events_modified
+name: Modify events files to create consistent scale and adjust question codings
+stage: "preprocessing"
+description: >
+  Modified the events files in order to make all responses on a scale of 0–1,
+  and code the responses such that a higher response corresponded to greater
+  self-regulation.
+code_dir: "analyses/create_events_modified"
+dependencies: []
+script_entry: ["fix_codings.py"]
+notebook_entry: null
+other_files: []
+output_dir: null
+hypothesis: null
+conclusion: null
+notes: null
+status: "completed"
+last_updated: 2025-11-18
+authors: ["Jaemon Jumpawong"]

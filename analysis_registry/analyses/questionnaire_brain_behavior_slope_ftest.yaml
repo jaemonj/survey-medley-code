@@ -1,0 +1,21 @@
+id: questionnaire_brain_behavior_slope_ftest
+name: Assess how within-subject brain-behavior slopes differ between questionnaires
+stage: "group"
+description: >
+    Run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire, 
+    to see whether any within-questionnaire slopes are statistically different from each other.
+code_dir: "analyses/questionnaire_brain_behavior_slope_ftest"
+dependencies: ["analyses/within_subject_brain_behavior_by_questionnaire"]
+script_entry: []
+notebook_entry:
+    - "run_ftest.ipynb"
+other_files: []
+output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest"
+hypothesis: "Some within-questionnaire slopes statistically differ from each other in some parts of the brain."
+conclusion: >
+    Still under discussion, but the F-test yielded some significant regions, 
+    some of which overlapped with the regions found in the within-subject brain-behavior analysis with all questions.
+notes: null
+status: "ongoing"
+last_updated: 2025-11-16
+authors: ["Jaemon Jumpawong", "Jeanette Mumford"]

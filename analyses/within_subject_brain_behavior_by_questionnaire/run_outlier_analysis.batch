@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --job-name=run_outlier_analysis
+#SBATCH --output=run_outlier_analysis_%j.out
+#SBATCH --error=run_outlier_analysis_%j.err
+#SBATCH --time=05:00:00
+#SBATCH -p russpold,hns,normal
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+
+# Run using uv and specify the venv directory directly
+uv --directory /oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code run python /oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code/analyses/within_subject_brain_behavior_by_questionnaire/questionnaire_brain_behavior_contrasts_outlier_analysis.py

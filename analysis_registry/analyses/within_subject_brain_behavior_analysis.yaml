@@ -1,0 +1,24 @@
+id: within_subject_brain_behavior_analysis
+name: Assess within-subject brain-behavior correlations
+stage: "time series"
+description: >
+  Estimate the average of the within-subject correlation between brain 
+  activation and behavioral response across all questions.
+code_dir: "analyses/within_subject_brain_behavior_analysis"
+dependencies: []
+script_entry:
+  - "within_subject_brain_behavior_outlier_analysis.py"
+  - "run_outlier_analysis.batch"
+  - "submit_randomise.sh"
+notebook_entry:
+  - "analyze_brain_behavior_within_subject.ipynb"
+other_files: []
+output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis"
+hypothesis: "Within-subject brain activation linearly relates to their behavioral response."
+conclusion: >
+  There are regions with a significant negative correlation between brain activation and behavioral response
+  (across all questions), suggesting that these regions are more activated when giving a response coded as less self-regulated.
+notes: null
+status: "completed"
+last_updated: 2025-11-16
+authors: ["Jaemon Jumpawong", "Jeanette Mumford"]

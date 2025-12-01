@@ -1,0 +1,25 @@
+id: "within_subject_question_estimates"
+name: "Estimate question and questionnaire activation estimates and QA"
+stage: "time series"
+description: >
+  This analysis runs time series models for all subjects to estimate question-specific
+  estimates as well as questionnaire-specific estimates. For the questionnaire averages, all question
+  estimates were included, regardless of whether the subject responded or had an acceptable key press.  
+  Contrast estimates filenames include "err" if they did not respond or used an unacceptable key
+  for that question.
+code_dir: "analyses/within_subject_question_estimates"
+dependencies: []
+script_entry:
+  - "timeseries_model.py"
+notebook_entry:
+  - "make_subid_text_file.ipynb"
+  - "qa_outputs.ipynb"
+output_dir: "/oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_results"
+hypothesis: "No formal hypothesis at this stage; just calculating estimates for group analyses to study questionnaire differences."
+conclusion: "The outlier assessment worked well and we have at least 93 good data sets for each question/questionnaire."
+notes: >
+  There are lists in text files indicating the good subjects for each contrast (based on the outlier assessment) 
+  located in the outlier_assessment subdirectory within the output directory.
+status: "complete"
+last_updated: 2025-11-20
+authors: ["Jeanette Mumford", "Jaemon Jumpawong"]

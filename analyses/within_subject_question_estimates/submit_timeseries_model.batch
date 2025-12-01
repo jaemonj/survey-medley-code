@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=within_subject_question
+#SBATCH --output=/oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code/log/question_maps_%A_%a.out
+#SBATCH --error=/oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code/log/question_maps_%A_%a.err
+#SBATCH --time=01:00:00
+#SBATCH -p russpold,hns,normal
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH --array=0-99%20
+
+PROJECT_ROOT="/oak/stanford/groups/russpold/data/uh2/aim1/analysis_code/survey_medley_code"
+SCRIPT_DIR="$PROJECT_ROOT/analyses/within_subject_question_estimates"
+SUB_LIST="$PROJECT_ROOT/analyses/assess_subject_bold_dropout/preanalysis_good_subject_list.txt"
+UV_SETUP="$PROJECT_ROOT/setup_uv_sherlock.sh"
+
+source $UV_SETUP
+
+# Get subject ID for this task
+SUBID=$(sed -n "$((SLURM_ARRAY_TASK_ID+1))p" "$SUB_LIST")
+
+uv --directory "$PROJECT_ROOT" run "$SCRIPT_DIR/timeseries_model.py" "$SUBID" 
+
+
+
+
