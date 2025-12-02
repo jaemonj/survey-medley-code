@@ -7,7 +7,7 @@
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
 <tr><td>assess subject bold dropout</td><td>The overlap of the individual masker masks with a generous aggregate mask (voxels with data for at least 30% of the subjects) is used to identify subjects with poor coverage that may be considered for  removal. A final list of subjects to use in first-level analyses is created.</td><td>completed</td><td><a href="../analyses/assess_subject_bold_dropout/generate_good_subject_list.ipynb">generate_good_subject_list.ipynb</a>, <a href="../analyses/assess_subject_bold_dropout/mask_and_mean_QA.pdf">mask_and_mean_QA.pdf</a></td><td>For time series analyses used subjects listed in preanalysis_good_subject_list.txt (in associated analysis directory).   A mask for group (randomise) analyses is created in this code base (see other files section for mask location.)</td></tr>
 <tr><td>create events modified</td><td>Modified the events files in order to make all responses on a scale of 0–1, and code the responses such that a higher response corresponded to greater self-regulation.</td><td>completed</td><td>None</td><td>None</td></tr>
-<tr><td>data exploration</td><td>This is a collection of quick analyses to gain insight into what the behavioral data look like.  For example, who is missing data, who is missing responses to questions, RTs, RTs and word count relationship.</td><td>completed</td><td><a href="../analyses/data_exploration/events_data_explore.ipynb">events_data_explore.ipynb</a></td><td>In analyses where we do not exclude the activation estimates when responses are missing, we should recall the high amount of  missing values in all three impulsive venture questions compared to other questionnaires.</td></tr>
+<tr><td>data exploration</td><td>This is a collection of quick analyses to gain insight into what the behavioral data look like.  For example, who is missing data, who is missing responses to questions, RTs, RTs and word count relationship.</td><td>completed, Patrick should review</td><td><a href="../analyses/data_exploration/events_data_explore.ipynb">events_data_explore.ipynb</a></td><td>In analyses where we do not exclude the activation estimates when responses are missing, we should recall the high amount of  missing values in all three impulsive venture questions compared to other questionnaires.</td></tr>
 <tr><th colspan="5"><strong>Time Series</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
 <tr><td>within subject brain behavior analysis</td><td>Estimate the average of the within-subject correlation between brain  activation and behavioral response across all questions.</td><td>completed</td><td>None</td><td>None</td></tr>
@@ -95,7 +95,7 @@
 **Hypothesis:** Who has high motion, Question responses vary by question/subject, RTs vary by question word count<br>
 **Conclusion:** RTs seem to relate to the number of words in the question, impulsive venture questions  have highest missingness as does Q32 from UPPS.<br>
 **Notes:** In analyses where we do not exclude the activation estimates when responses are missing, we should recall the high amount of  missing values in all three impulsive venture questions compared to other questionnaires.<br>
-**Status:** completed<br>
+**Status:** completed, Patrick should review<br>
 **Last Updated:** 2025-11-23<br>
 **Authors:** Jeanette Mumford<br>
 
