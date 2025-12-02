@@ -6,6 +6,11 @@ garbage/
 **/garbage/
 
 
+# ignore the temporary directory where we're storing code that needs refactoring
+analyses/code_to_refactor/
+analyses/sandbox/
+
+
 # ignore the .venv 
 .venv/
 
