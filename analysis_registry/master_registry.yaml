@@ -17,6 +17,9 @@
   other_files:
   - analyses/assess_subject_bold_dropout/preanalysis_good_subject_list.txt
   - 'group mask for randomise: .../survey_medley_results/assess_subject_bold_dropout/group_mask_intersection_30pct.nii.gz'
+  results_files:
+  - generate_good_subject_list.ipynb
+  - mask_and_mean_QA.pdf
   output_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/assess_subject_bold_dropout/nifti_masker_masks
   hypothesis: Some subjects with poor data may have been missed during MRIQC evaluation.
   conclusion: Two subjects were identified for removal due to poor coverage caused
@@ -50,6 +53,38 @@
   last_updated: 2025-11-18
   authors:
   - Jaemon Jumpawong
+- id: data_exploration
+  name: Data orientation (mostly behavioral)
+  stage: preprocessing
+  description: 'This is a collection of quick analyses to gain insight into what the
+    behavioral data look like.  For example, who is missing data, who is missing responses
+    to questions, RTs, RTs and word count relationship.
+
+    '
+  code_dir: analyses/data_exploration
+  dependencies: []
+  script_entry: []
+  notebook_entry:
+  - events_data_explore.ipynb
+  other_files: []
+  results_files:
+  - events_data_explore.ipynb
+  output_dir: []
+  hypothesis: 'Who has high motion, Question responses vary by question/subject, RTs
+    vary by question word count '
+  conclusion: 'RTs seem to relate to the number of words in the question, impulsive
+    venture questions  have highest missingness as does Q32 from UPPS.
+
+    '
+  notes: 'In analyses where we do not exclude the activation estimates when responses
+    are missing, we should recall the high amount of  missing values in all three
+    impulsive venture questions compared to other questionnaires.
+
+    '
+  status: completed
+  last_updated: '2025-11-23'
+  authors:
+  - Jeanette Mumford
 - id: questionnaire_brain_behavior_slope_ftest
   name: Assess how within-subject brain-behavior slopes differ between questionnaires
   stage: group

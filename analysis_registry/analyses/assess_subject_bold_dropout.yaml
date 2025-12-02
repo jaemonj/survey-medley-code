@@ -16,6 +16,9 @@ notebook_entry:
 other_files:
   - "analyses/assess_subject_bold_dropout/preanalysis_good_subject_list.txt"
   - "group mask for randomise: .../survey_medley_results/assess_subject_bold_dropout/group_mask_intersection_30pct.nii.gz"
+results_files:
+  - "generate_good_subject_list.ipynb"
+  - "mask_and_mean_QA.pdf"
 output_dir: "/oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/assess_subject_bold_dropout/nifti_masker_masks"
 hypothesis: "Some subjects with poor data may have been missed during MRIQC evaluation."
 conclusion: "Two subjects were identified for removal due to poor coverage caused by bad data quality (see notebook for details)."

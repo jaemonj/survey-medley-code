@@ -43,7 +43,7 @@ quote-style = "single"
 
 [tool.ruff.lint]
 extend-select = ["E501", "W", "N", "R", "I"]
-#ignore = ["F401"]  # allow unused imports
+ignore = ["F401"]  # allow unused imports
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
