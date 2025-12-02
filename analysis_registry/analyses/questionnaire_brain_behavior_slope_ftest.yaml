@@ -10,6 +10,7 @@ script_entry: []
 notebook_entry:
     - "run_ftest.ipynb"
 other_files: []
+results_files: []
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest"
 hypothesis: "Some within-questionnaire slopes statistically differ from each other in some parts of the brain."
 conclusion: >

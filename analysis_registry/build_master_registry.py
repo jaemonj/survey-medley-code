@@ -148,7 +148,7 @@ def write_markdown_summary(entries, output_file: Path):
             )
             md_lines.append(render_md_list('Script Entry', e.get('script_entry')))
             md_lines.append(render_md_list('Notebook Entry', e.get('notebook_entry')))
-            md_lines.append(render_md_list('Other Files', e.get('other_Fiels')))
+            md_lines.append(render_md_list('Other Files', e.get('other_files')))
             md_lines.append(
                 f'**Output Directory:** {stringify_entry(e.get("output_dir"))}<br>'
             )

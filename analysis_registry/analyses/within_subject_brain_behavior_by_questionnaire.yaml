@@ -12,6 +12,7 @@ script_entry:
 notebook_entry:
     - "brain_behavior_within_subject_by_questionnaire.ipynb"
 other_files: []
+results_files: []
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire"
 hypothesis: "Some brain/behavior slopes are statistically different between questionnaires."
 conclusion: >

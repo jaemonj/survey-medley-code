@@ -11,7 +11,7 @@
 <tr><th colspan="5"><strong>Time Series</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
 <tr><td>within subject brain behavior analysis</td><td>Estimate the average of the within-subject correlation between brain  activation and behavioral response across all questions.</td><td>completed</td><td>None</td><td>None</td></tr>
-<tr><td>within subject question estimates</td><td>This analysis runs time series models for all subjects to estimate question-specific estimates as well as questionnaire-specific estimates. For the questionnaire averages, all question estimates were included, regardless of whether the subject responded or had an acceptable key press.   Contrast estimates filenames include "err" if they did not respond or used an unacceptable key for that question.</td><td>complete</td><td>None</td><td>There are lists in text files indicating the good subjects for each contrast (based on the outlier assessment)  located in the outlier_assessment subdirectory within the output directory.</td></tr>
+<tr><td>within subject question estimates</td><td>This analysis runs time series models for all subjects to estimate question-specific estimates as well as questionnaire-specific estimates. For the questionnaire averages, all question estimates were included, regardless of whether the subject responded or had an acceptable key press.   Contrast estimates filenames include "err" if they did not respond or used an unacceptable key for that question.</td><td>complete, but Patrick should review qa outputs</td><td><a href="../analyses/within_subject_question_estimates/qa_outputs.ipynb">qa_outputs.ipynb</a></td><td>There are lists in text files indicating the good subjects for each contrast (based on the outlier assessment)  located in the outlier_assessment subdirectory within the output directory.</td></tr>
 <tr><th colspan="5"><strong>Time Series And Group</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
 <tr><td>within subject brain behavior by questionnaire</td><td>Estimate the within-subject slope between brain activation and behavioral response separately for each questionnaire.</td><td>completed</td><td>None</td><td>None</td></tr>
@@ -41,7 +41,10 @@
 **Notebook Entry:**
 - generate_good_subject_list.ipynb
 
-**Other Files:** None<br>
+**Other Files:**
+- analyses/assess_subject_bold_dropout/preanalysis_good_subject_list.txt
+- group mask for randomise: .../survey_medley_results/assess_subject_bold_dropout/group_mask_intersection_30pct.nii.gz
+
 **Output Directory:** /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/assess_subject_bold_dropout/nifti_masker_masks<br>
 **Results Files:** <a href="../analyses/assess_subject_bold_dropout/generate_good_subject_list.ipynb">generate_good_subject_list.ipynb</a>, <a href="../analyses/assess_subject_bold_dropout/mask_and_mean_QA.pdf">mask_and_mean_QA.pdf</a><br>
 **Hypothesis:** Some subjects with poor data may have been missed during MRIQC evaluation.<br>
@@ -62,7 +65,8 @@
 - fix_codings.py
 
 **Notebook Entry:** None<br>
-**Other Files:** None<br>
+**Other Files:**
+
 **Output Directory:** None<br>
 **Results Files:** None<br>
 **Hypothesis:** None<br>
@@ -84,7 +88,8 @@
 **Notebook Entry:**
 - events_data_explore.ipynb
 
-**Other Files:** None<br>
+**Other Files:**
+
 **Output Directory:** None<br>
 **Results Files:** <a href="../analyses/data_exploration/events_data_explore.ipynb">events_data_explore.ipynb</a><br>
 **Hypothesis:** Who has high motion, Question responses vary by question/subject, RTs vary by question word count<br>
@@ -112,7 +117,8 @@
 **Notebook Entry:**
 - analyze_brain_behavior_within_subject.ipynb
 
-**Other Files:** None<br>
+**Other Files:**
+
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis<br>
 **Results Files:** None<br>
 **Hypothesis:** Within-subject brain activation linearly relates to their behavioral response.<br>
@@ -138,11 +144,11 @@
 
 **Other Files:** None<br>
 **Output Directory:** /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_results<br>
-**Results Files:** None<br>
+**Results Files:** <a href="../analyses/within_subject_question_estimates/qa_outputs.ipynb">qa_outputs.ipynb</a><br>
 **Hypothesis:** No formal hypothesis at this stage; just calculating estimates for group analyses to study questionnaire differences.<br>
 **Conclusion:** The outlier assessment worked well and we have at least 93 good data sets for each question/questionnaire.<br>
 **Notes:** There are lists in text files indicating the good subjects for each contrast (based on the outlier assessment)  located in the outlier_assessment subdirectory within the output directory.<br>
-**Status:** complete<br>
+**Status:** complete, but Patrick should review qa outputs<br>
 **Last Updated:** 2025-11-20<br>
 **Authors:** Jeanette Mumford, Jaemon Jumpawong<br>
 
@@ -163,7 +169,8 @@
 **Notebook Entry:**
 - brain_behavior_within_subject_by_questionnaire.ipynb
 
-**Other Files:** None<br>
+**Other Files:**
+
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire<br>
 **Results Files:** None<br>
 **Hypothesis:** Some brain/behavior slopes are statistically different between questionnaires.<br>
@@ -188,7 +195,8 @@
 **Notebook Entry:**
 - run_ftest.ipynb
 
-**Other Files:** None<br>
+**Other Files:**
+
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest<br>
 **Results Files:** None<br>
 **Hypothesis:** Some within-questionnaire slopes statistically differ from each other in some parts of the brain.<br>
@@ -212,7 +220,10 @@
 - setup_randomise.ipynb
 - review_results.ipynb
 
-**Other Files:** None<br>
+**Other Files:**
+- runs f-test randomise script: submit_randomise.batch
+- runs individual paired randomise tests: submis_randomise_all_pairs.batch
+
 **Output Directory:** /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_question_estimates/<br>
 **Results Files:** <a href="../analyses/questionnaire_average_omnibus_f/review_results.ipynb">review_results.ipynb</a><br>
 **Hypothesis:** Some questionnaire-based average activation estimates will differ from others.<br>

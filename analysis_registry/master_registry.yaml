@@ -100,6 +100,7 @@
   notebook_entry:
   - run_ftest.ipynb
   other_files: []
+  results_files: []
   output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest
   hypothesis: Some within-questionnaire slopes statistically differ from each other
     in some parts of the brain.
@@ -172,6 +173,7 @@
   notebook_entry:
   - analyze_brain_behavior_within_subject.ipynb
   other_files: []
+  results_files: []
   output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis
   hypothesis: Within-subject brain activation linearly relates to their behavioral
     response.
@@ -201,6 +203,7 @@
   notebook_entry:
   - brain_behavior_within_subject_by_questionnaire.ipynb
   other_files: []
+  results_files: []
   output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire
   hypothesis: Some brain/behavior slopes are statistically different between questionnaires.
   conclusion: 'Still under discussion, but the F-test yielded some significant regions,  some
@@ -231,6 +234,8 @@
   notebook_entry:
   - make_subid_text_file.ipynb
   - qa_outputs.ipynb
+  results_files:
+  - qa_outputs.ipynb
   output_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_results
   hypothesis: No formal hypothesis at this stage; just calculating estimates for group
     analyses to study questionnaire differences.
@@ -241,7 +246,7 @@
     within the output directory.
 
     '
-  status: complete
+  status: complete, but Patrick should review qa outputs
   last_updated: 2025-11-20
   authors:
   - Jeanette Mumford
