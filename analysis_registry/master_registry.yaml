@@ -85,6 +85,37 @@
   last_updated: '2025-11-23'
   authors:
   - Jeanette Mumford
+- id: questionnaire_average_multivariate
+  name: Multivariate analyses using pairwise differences of questionnaire averages
+  stage: group
+  description: 'Using the 10 pairwise difference activation maps, run PCA to see whether  there
+    spatial patterns in which the contrasts differ, summarizing how groups  of voxels
+    vary together across all pairwise comparisons.
+
+    '
+  code_dir: analyses/questionnaire_average_multivariate
+  dependencies:
+  - Output files from questionnaire_average_omnibus_f (...survey_medley_results/within_subject_question_estimates/all_paired_t_tests)
+  script_entry: []
+  notebook_entry:
+  - paired_test_pca.ipynb
+  results_files:
+  - paired_test_pca.ipynb
+  other_files: []
+  output_dir: []
+  hypothesis: Spatial patterns may differ between pairwise comparisons
+  conclusion: 'There are 4 nice looking components, but Jeanette cannot discern  whether
+    the results are psychologically interesting.
+
+    '
+  notes: 'Jeanette has written a guide/explainer at the top of the results_file entry
+    to aid in  understanding and interpreting the PCA results.
+
+    '
+  status: Results file needs review by Patrick and Jaemon
+  last_updated: 2025-12-3
+  authors:
+  - Jeanette Mumford
 - id: questionnaire_brain_behavior_slope_ftest
   name: Assess how within-subject brain-behavior slopes differ between questionnaires
   stage: group
@@ -206,14 +237,12 @@
   results_files: []
   output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire
   hypothesis: Some brain/behavior slopes are statistically different between questionnaires.
-  conclusion: 'Still under discussion, but the F-test yielded some significant regions,  some
-    of which overlapped with the regions found in the within-subject brain-behavior
-    analysis with all questions.
-
-    '
+  conclusion: "It would be worth running an F-test to determine whether there are\
+    \ in fact brain/behavior slopes that are statistically different between questionnaires.\
+    \ \n"
   notes: null
   status: completed
-  last_updated: 2025-11-16
+  last_updated: 2025-12-03
   authors:
   - Jaemon Jumpawong
   - Jeanette Mumford

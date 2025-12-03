@@ -1,0 +1,25 @@
+id: data_exploration
+name: Data orientation (mostly behavioral)
+stage: preprocessing
+description: >
+  This is a collection of quick analyses to gain insight into what the behavioral data look like. 
+  For example, who is missing data, who is missing responses to questions, RTs, RTs and word count relationship.
+code_dir: "analyses/data_exploration"
+dependencies: []
+script_entry: []
+notebook_entry:
+  - "events_data_explore.ipynb"
+other_files: []
+results_files:
+  - "events_data_explore.ipynb"
+output_dir: []
+hypothesis: "Who has high motion, Question responses vary by question/subject, RTs vary by question word count "
+conclusion: >
+  RTs seem to relate to the number of words in the question, impulsive venture questions 
+  have highest missingness as does Q32 from UPPS.
+notes: >
+  In analyses where we do not exclude the activation estimates when responses are missing, we should recall the high amount of 
+  missing values in all three impulsive venture questions compared to other questionnaires.
+status: "completed, Patrick should review"
+last_updated: "2025-11-23"
+authors: ["Jeanette Mumford"]

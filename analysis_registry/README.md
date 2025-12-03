@@ -17,6 +17,7 @@
 <tr><td>within subject brain behavior by questionnaire</td><td>Estimate the within-subject slope between brain activation and behavioral response separately for each questionnaire.</td><td>completed</td><td>None</td><td>None</td></tr>
 <tr><th colspan="5"><strong>Group</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
+<tr><td>questionnaire average multivariate</td><td>Using the 10 pairwise difference activation maps, run PCA to see whether  there spatial patterns in which the contrasts differ, summarizing how groups  of voxels vary together across all pairwise comparisons.</td><td>Results file needs review by Patrick and Jaemon</td><td><a href="../analyses/questionnaire_average_multivariate/paired_test_pca.ipynb">paired_test_pca.ipynb</a></td><td>Jeanette has written a guide/explainer at the top of the results_file entry to aid in  understanding and interpreting the PCA results.</td></tr>
 <tr><td>questionnaire brain behavior slope ftest</td><td>Run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire,  to see whether any within-questionnaire slopes are statistically different from each other.</td><td>ongoing</td><td>None</td><td>None</td></tr>
 <tr><td>questionnaire average omnibus f</td><td>We use randomise to run an omnibus f-test to test whether any pair of questionaire average activations differ from each other.  The permutation scheme adjusts for the correlations between measures within-subject in the group model (model mean adjusts by subject as well).  Individual paired t-tests for all 10 pairs of  questionnaires are also run in an effort to help understand the f-test results.</td><td>Results files needs review by Patrick</td><td><a href="../analyses/questionnaire_average_omnibus_f/review_results.ipynb">review_results.ipynb</a></td><td>The paired comparisons can be used to conclude where differences  DO occur, but a lack of a significant paired t-test cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer questions have less power in these comparisons.</td></tr>
 </table>
@@ -174,16 +175,39 @@
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire<br>
 **Results Files:** None<br>
 **Hypothesis:** Some brain/behavior slopes are statistically different between questionnaires.<br>
-**Conclusion:** Still under discussion, but the F-test yielded some significant regions,  some of which overlapped with the regions found in the within-subject brain-behavior analysis with all questions.<br>
+**Conclusion:** It would be worth running an F-test to determine whether there are in fact brain/behavior slopes that are statistically different between questionnaires.<br>
 **Notes:** None<br>
 **Status:** completed<br>
-**Last Updated:** 2025-11-16<br>
+**Last Updated:** 2025-12-03<br>
 **Authors:** Jaemon Jumpawong, Jeanette Mumford<br>
 
 ---
 
 
 ## Group
+
+### questionnaire_average_multivariate
+**Name:** Multivariate analyses using pairwise differences of questionnaire averages<br>
+**Description:** Using the 10 pairwise difference activation maps, run PCA to see whether  there spatial patterns in which the contrasts differ, summarizing how groups  of voxels vary together across all pairwise comparisons.<br>
+**Code Directory:** analyses/questionnaire_average_multivariate<br>
+**Dependencies:** Output files from questionnaire_average_omnibus_f (...survey_medley_results/within_subject_question_estimates/all_paired_t_tests)<br>
+**Script Entry:**
+
+**Notebook Entry:**
+- paired_test_pca.ipynb
+
+**Other Files:**
+
+**Output Directory:** None<br>
+**Results Files:** <a href="../analyses/questionnaire_average_multivariate/paired_test_pca.ipynb">paired_test_pca.ipynb</a><br>
+**Hypothesis:** Spatial patterns may differ between pairwise comparisons<br>
+**Conclusion:** There are 4 nice looking components, but Jeanette cannot discern  whether the results are psychologically interesting.<br>
+**Notes:** Jeanette has written a guide/explainer at the top of the results_file entry to aid in  understanding and interpreting the PCA results.<br>
+**Status:** Results file needs review by Patrick and Jaemon<br>
+**Last Updated:** 2025-12-3<br>
+**Authors:** Jeanette Mumford<br>
+
+---
 
 ### questionnaire_brain_behavior_slope_ftest
 **Name:** Assess how within-subject brain-behavior slopes differ between questionnaires<br>

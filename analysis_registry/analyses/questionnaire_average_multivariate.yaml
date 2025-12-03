@@ -1,0 +1,27 @@
+id: "questionnaire_average_multivariate"
+name: "Multivariate analyses using pairwise differences of questionnaire averages"
+stage: "group"
+description: >
+  Using the 10 pairwise difference activation maps, run PCA to see whether 
+  there spatial patterns in which the contrasts differ, summarizing how groups 
+  of voxels vary together across all pairwise comparisons.
+code_dir: "analyses/questionnaire_average_multivariate"
+dependencies:
+  - "Output files from questionnaire_average_omnibus_f (...survey_medley_results/within_subject_question_estimates/all_paired_t_tests)"
+script_entry: []
+notebook_entry:
+  - "paired_test_pca.ipynb"
+results_files:
+  - "paired_test_pca.ipynb"
+other_files: []
+output_dir: []
+hypothesis: "Spatial patterns may differ between pairwise comparisons"
+conclusion: >
+  There are 4 nice looking components, but Jeanette cannot discern 
+  whether the results are psychologically interesting.
+notes: >
+  Jeanette has written a guide/explainer at the top of the results_file entry to aid in 
+  understanding and interpreting the PCA results.
+status: "Results file needs review by Patrick and Jaemon"
+last_updated: 2025-12-3
+authors: ["Jeanette Mumford"]
