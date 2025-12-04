@@ -12,13 +12,12 @@ script_entry:
 notebook_entry:
     - "brain_behavior_within_subject_by_questionnaire.ipynb"
 other_files: []
-results_files: []
+results_files: ["brain_behavior_within_subject_by_questionnaire.ipynb"]
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire"
 hypothesis: "Some brain/behavior slopes are statistically different between questionnaires."
 conclusion: >
-    Still under discussion, but the F-test yielded some significant regions, 
-    some of which overlapped with the regions found in the within-subject brain-behavior analysis with all questions.
+    It would be worth running an F-test to determine whether there are in fact brain/behavior slopes that are statistically different between questionnaires. 
 notes: null
 status: "completed"
-last_updated: 2025-11-16
+last_updated: 2025-12-03
 authors: ["Jaemon Jumpawong", "Jeanette Mumford"]

@@ -167,8 +167,10 @@
   notebook_entry:
   - setup_randomise.ipynb
   - review_results.ipynb
+  - paired_t_test_maps.ipynb
   results_files:
   - review_results.ipynb
+  - paired_t_test_maps.ipynb
   other_files:
   - 'runs f-test randomise script: submit_randomise.batch'
   - 'runs individual paired randomise tests: submis_randomise_all_pairs.batch'
@@ -234,7 +236,8 @@
   notebook_entry:
   - brain_behavior_within_subject_by_questionnaire.ipynb
   other_files: []
-  results_files: []
+  results_files:
+  - brain_behavior_within_subject_by_questionnaire.ipynb
   output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire
   hypothesis: Some brain/behavior slopes are statistically different between questionnaires.
   conclusion: "It would be worth running an F-test to determine whether there are\

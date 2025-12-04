@@ -14,8 +14,10 @@ script_entry:
 notebook_entry:
   - "setup_randomise.ipynb"
   - "review_results.ipynb"
+  - "paired_t_test_maps.ipynb"
 results_files:
   - "review_results.ipynb"
+  - "paired_t_test_maps.ipynb"
 other_files:
   - "runs f-test randomise script: submit_randomise.batch"
   - "runs individual paired randomise tests: submis_randomise_all_pairs.batch"
