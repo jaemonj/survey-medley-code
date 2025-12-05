@@ -87,18 +87,18 @@ def run_second_level_model(subject_id, output_root, merged_data, survey_dummies)
     second_level_model = SecondLevelModel()
     second_level_model.fit(bold_paths, design_matrix=X)
 
-    survey_columns = [col for col in X.columns if col != 'chr_count_centered']
+    survey_columns = [col for col in X.columns]
+    print(survey_columns)
 
     for survey in survey_columns:
-        if X[survey].sum() > 0:
-            contrast = second_level_model.compute_contrast(
-                survey, output_type='effect_size'
-            )
-            output_file = (
-                sub_output / f'contrast_{survey}_effect_size_sub_{subject_id}.nii.gz'
-            )
-            contrast.to_filename(str(output_file))
-            print(f'Saved contrast for {survey} to {output_file}')
+        contrast = second_level_model.compute_contrast(
+            survey, output_type='effect_size'
+        )
+        output_file = (
+            sub_output / f'contrast_{survey}_effect_size_sub_{subject_id}.nii.gz'
+        )
+        contrast.to_filename(str(output_file))
+        print(f'Saved contrast for {survey} to {output_file}')
 
 
 def main(job_num):
