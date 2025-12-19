@@ -5,19 +5,27 @@ description: >
     Estimate the within-subject slope between brain activation and behavioral response
     separately for each questionnaire.
 code_dir: "analyses/within_subject_brain_behavior_by_questionnaire"
-dependencies: []
+dependencies: 
+    - "Output files from within_subject_question_estimates analysis"
 script_entry:
-    - "questionnaire_brain_behavior_contrasts_outlier_analysis.py"
-    - "run_outlier_analysis.batch"
+    - "subject_contrasts_brain_behavior_within_subject_by_questionnaire.py"
+    - "submit_subject_contrasts.batch"
+    - "adjusted_subject_contrasts.py"
+    - "submit_adjusted_subject_contrasts.batch"
 notebook_entry:
     - "brain_behavior_within_subject_by_questionnaire.ipynb"
+    - "adjusted_brain_behavior_within_subject_by_questionnaire.ipynb"
 other_files: []
-results_files: ["brain_behavior_within_subject_by_questionnaire.ipynb"]
+results_files: 
+    - "brain_behavior_within_subject_by_questionnaire.ipynb"
+    - "adjusted_brain_behavior_within_subject_by_questionnaire.ipynb"
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire"
 hypothesis: "Some brain/behavior slopes are statistically different between questionnaires."
 conclusion: >
     It would be worth running an F-test to determine whether there are in fact brain/behavior slopes that are statistically different between questionnaires. 
-notes: null
-status: "completed"
-last_updated: 2025-12-03
+notes: >
+    The "adjusted" notebook and scripts differ from the unadjusted in that a regressor for the character count of each survey question is added
+    when estimating the brain/behavior slope.
+status: "needs review"
+last_updated: 2025-12-19
 authors: ["Jaemon Jumpawong", "Jeanette Mumford"]

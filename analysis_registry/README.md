@@ -10,15 +10,15 @@
 <tr><td>data exploration</td><td>This is a collection of quick analyses to gain insight into what the behavioral data look like.  For example, who is missing data, who is missing responses to questions, RTs, RTs and word count relationship.</td><td>completed, Patrick should review</td><td><a href="../analyses/data_exploration/events_data_explore.ipynb">events_data_explore.ipynb</a></td><td>In analyses where we do not exclude the activation estimates when responses are missing, we should recall the high amount of  missing values in all three impulsive venture questions compared to other questionnaires.</td></tr>
 <tr><th colspan="5"><strong>Time Series</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
-<tr><td>within subject brain behavior analysis</td><td>Estimate the average of the within-subject correlation between brain  activation and behavioral response across all questions.</td><td>completed</td><td>None</td><td>None</td></tr>
+<tr><td>within subject brain behavior analysis</td><td>Estimate the average of the within-subject correlation between brain  activation and behavioral response across all questions.</td><td>needs review</td><td><a href="../analyses/within_subject_brain_behavior_analysis/analyze_brain_behavior_within_subject.ipynb">analyze_brain_behavior_within_subject.ipynb</a>, <a href="../analyses/within_subject_brain_behavior_analysis/analyze_adjusted_brain_behavior_within_subject.ipynb">analyze_adjusted_brain_behavior_within_subject.ipynb</a></td><td>The "adjusted" notebook and script differ from the unadjusted in that a regressor for the character count of each survey question is added when estimating the brain/behavior slope.</td></tr>
 <tr><td>within subject question estimates</td><td>This analysis runs time series models for all subjects to estimate question-specific estimates as well as questionnaire-specific estimates. For the questionnaire averages, all question estimates were included, regardless of whether the subject responded or had an acceptable key press.   Contrast estimates filenames include "err" if they did not respond or used an unacceptable key for that question.</td><td>complete, but Patrick should review qa outputs</td><td><a href="../analyses/within_subject_question_estimates/qa_outputs.ipynb">qa_outputs.ipynb</a></td><td>There are lists in text files indicating the good subjects for each contrast (based on the outlier assessment)  located in the outlier_assessment subdirectory within the output directory.</td></tr>
 <tr><th colspan="5"><strong>Time Series And Group</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
-<tr><td>within subject brain behavior by questionnaire</td><td>Estimate the within-subject slope between brain activation and behavioral response separately for each questionnaire.</td><td>completed</td><td><a href="../analyses/within_subject_brain_behavior_by_questionnaire/brain_behavior_within_subject_by_questionnaire.ipynb">brain_behavior_within_subject_by_questionnaire.ipynb</a></td><td>None</td></tr>
+<tr><td>within subject brain behavior by questionnaire</td><td>Estimate the within-subject slope between brain activation and behavioral response separately for each questionnaire.</td><td>needs review</td><td><a href="../analyses/within_subject_brain_behavior_by_questionnaire/brain_behavior_within_subject_by_questionnaire.ipynb">brain_behavior_within_subject_by_questionnaire.ipynb</a>, <a href="../analyses/within_subject_brain_behavior_by_questionnaire/adjusted_brain_behavior_within_subject_by_questionnaire.ipynb">adjusted_brain_behavior_within_subject_by_questionnaire.ipynb</a></td><td>The "adjusted" notebook and scripts differ from the unadjusted in that a regressor for the character count of each survey question is added when estimating the brain/behavior slope.</td></tr>
 <tr><th colspan="5"><strong>Group</strong></th></tr>
 <tr><td>ID</td><td>Description</td><td>Status</td><td>Results Files</td><td>Notes</td></tr>
 <tr><td>questionnaire average multivariate</td><td>Using the 10 pairwise difference activation maps, run PCA to see whether  there spatial patterns in which the contrasts differ, summarizing how groups  of voxels vary together across all pairwise comparisons.</td><td>Results file needs review by Patrick and Jaemon</td><td><a href="../analyses/questionnaire_average_multivariate/paired_test_pca.ipynb">paired_test_pca.ipynb</a></td><td>Jeanette has written a guide/explainer at the top of the results_file entry to aid in  understanding and interpreting the PCA results.</td></tr>
-<tr><td>questionnaire brain behavior slope ftest</td><td>Run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire,  to see whether any within-questionnaire slopes are statistically different from each other.</td><td>ongoing</td><td>None</td><td>None</td></tr>
+<tr><td>questionnaire brain behavior slope ftest</td><td>Using randomise, run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire  to see whether any within-questionnaire slopes are statistically different from each other. Individual paired t-tests for all 10 pairs of  questionnaires are also run in order to help understand the F-test results. F-test and paired t-tests are run with and without adjusting for length of questions.</td><td>needs review</td><td><a href="../analyses/questionnaire_brain_behavior_slope_ftest/run_ftest.ipynb">run_ftest.ipynb</a>, <a href="../analyses/questionnaire_brain_behavior_slope_ftest/run_adjusted_ftest.ipynb">run_adjusted_ftest.ipynb</a>, <a href="../analyses/questionnaire_brain_behavior_slope_ftest/review_pairwise_comparison_results.ipynb">review_pairwise_comparison_results.ipynb</a></td><td>None</td></tr>
 <tr><td>questionnaire average omnibus f</td><td>We use randomise to run an omnibus f-test to test whether any pair of questionaire average activations differ from each other.  The permutation scheme adjusts for the correlations between measures within-subject in the group model (model mean adjusts by subject as well).  Individual paired t-tests for all 10 pairs of  questionnaires are also run in an effort to help understand the f-test results.</td><td>Results files needs review by Patrick</td><td><a href="../analyses/questionnaire_average_omnibus_f/review_results.ipynb">review_results.ipynb</a>, <a href="../analyses/questionnaire_average_omnibus_f/paired_t_test_maps.ipynb">paired_t_test_maps.ipynb</a></td><td>The paired comparisons can be used to conclude where differences  DO occur, but a lack of a significant paired t-test cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer questions have less power in these comparisons.</td></tr>
 </table>
 
@@ -111,22 +111,22 @@
 **Code Directory:** analyses/within_subject_brain_behavior_analysis<br>
 **Dependencies:** None<br>
 **Script Entry:**
-- within_subject_brain_behavior_outlier_analysis.py
-- run_outlier_analysis.batch
 - submit_randomise.sh
+- submit_adjusted_randomise.sh
 
 **Notebook Entry:**
 - analyze_brain_behavior_within_subject.ipynb
+- analyze_adjusted_brain_behavior_within_subject.ipynb
 
 **Other Files:**
 
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis<br>
-**Results Files:** None<br>
+**Results Files:** <a href="../analyses/within_subject_brain_behavior_analysis/analyze_brain_behavior_within_subject.ipynb">analyze_brain_behavior_within_subject.ipynb</a>, <a href="../analyses/within_subject_brain_behavior_analysis/analyze_adjusted_brain_behavior_within_subject.ipynb">analyze_adjusted_brain_behavior_within_subject.ipynb</a><br>
 **Hypothesis:** Within-subject brain activation linearly relates to their behavioral response.<br>
-**Conclusion:** There are regions with a significant negative correlation between brain activation and behavioral response (across all questions), suggesting that these regions are more activated when giving a response coded as less self-regulated.<br>
-**Notes:** None<br>
-**Status:** completed<br>
-**Last Updated:** 2025-11-16<br>
+**Conclusion:** There are regions with a significant negative correlation between brain activation and behavioral response (across all questions) that remain when adjusting for question length, suggesting that these regions are more activated when giving a response coded as less self-regulated.<br>
+**Notes:** The "adjusted" notebook and script differ from the unadjusted in that a regressor for the character count of each survey question is added when estimating the brain/behavior slope.<br>
+**Status:** needs review<br>
+**Last Updated:** 2025-12-19<br>
 **Authors:** Jaemon Jumpawong, Jeanette Mumford<br>
 
 ---
@@ -162,23 +162,26 @@
 **Name:** Assess within-subject brain-behavior slopes in each questionnaire<br>
 **Description:** Estimate the within-subject slope between brain activation and behavioral response separately for each questionnaire.<br>
 **Code Directory:** analyses/within_subject_brain_behavior_by_questionnaire<br>
-**Dependencies:** None<br>
+**Dependencies:** Output files from within_subject_question_estimates analysis<br>
 **Script Entry:**
-- questionnaire_brain_behavior_contrasts_outlier_analysis.py
-- run_outlier_analysis.batch
+- subject_contrasts_brain_behavior_within_subject_by_questionnaire.py
+- submit_subject_contrasts.batch
+- adjusted_subject_contrasts.py
+- submit_adjusted_subject_contrasts.batch
 
 **Notebook Entry:**
 - brain_behavior_within_subject_by_questionnaire.ipynb
+- adjusted_brain_behavior_within_subject_by_questionnaire.ipynb
 
 **Other Files:**
 
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire<br>
-**Results Files:** <a href="../analyses/within_subject_brain_behavior_by_questionnaire/brain_behavior_within_subject_by_questionnaire.ipynb">brain_behavior_within_subject_by_questionnaire.ipynb</a><br>
+**Results Files:** <a href="../analyses/within_subject_brain_behavior_by_questionnaire/brain_behavior_within_subject_by_questionnaire.ipynb">brain_behavior_within_subject_by_questionnaire.ipynb</a>, <a href="../analyses/within_subject_brain_behavior_by_questionnaire/adjusted_brain_behavior_within_subject_by_questionnaire.ipynb">adjusted_brain_behavior_within_subject_by_questionnaire.ipynb</a><br>
 **Hypothesis:** Some brain/behavior slopes are statistically different between questionnaires.<br>
 **Conclusion:** It would be worth running an F-test to determine whether there are in fact brain/behavior slopes that are statistically different between questionnaires.<br>
-**Notes:** None<br>
-**Status:** completed<br>
-**Last Updated:** 2025-12-03<br>
+**Notes:** The "adjusted" notebook and scripts differ from the unadjusted in that a regressor for the character count of each survey question is added when estimating the brain/behavior slope.<br>
+**Status:** needs review<br>
+**Last Updated:** 2025-12-19<br>
 **Authors:** Jaemon Jumpawong, Jeanette Mumford<br>
 
 ---
@@ -211,23 +214,32 @@
 
 ### questionnaire_brain_behavior_slope_ftest
 **Name:** Assess how within-subject brain-behavior slopes differ between questionnaires<br>
-**Description:** Run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire,  to see whether any within-questionnaire slopes are statistically different from each other.<br>
+**Description:** Using randomise, run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire  to see whether any within-questionnaire slopes are statistically different from each other. Individual paired t-tests for all 10 pairs of  questionnaires are also run in order to help understand the F-test results. F-test and paired t-tests are run with and without adjusting for length of questions.<br>
 **Code Directory:** analyses/questionnaire_brain_behavior_slope_ftest<br>
-**Dependencies:** analyses/within_subject_brain_behavior_by_questionnaire<br>
+**Dependencies:** Output files from within_subject_brain_behavior_by_questionnaire analysis<br>
 **Script Entry:**
+- randomise scripts are created in group_ftest and each subdirectory of all_paired_t_tests and all_adjusted_paired_t_tests in survey_medley_results/within_subject_brain_behavior_by_questionnaire/
 
 **Notebook Entry:**
 - run_ftest.ipynb
+- run_adjusted_ftest.ipynb
+- setup_pairwise_comparisons.ipynb
+- setup_pairwise_comparisons_adjusted.ipynb
+- review_pairwise_comparison_results.ipynb
 
 **Other Files:**
+- runs F-test randomise script: submit_randomise.sh
+- runs adjusted F-test randomise script: submit_adjusted_randomise.sh
+- runs individual paired randomise tests: submit_randomise_all_pairs.batch
+- runs adjusted individual paired randomise tests: submit_adjusted_randomise_all_pairs.batch
 
 **Output Directory:** oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest<br>
-**Results Files:** None<br>
+**Results Files:** <a href="../analyses/questionnaire_brain_behavior_slope_ftest/run_ftest.ipynb">run_ftest.ipynb</a>, <a href="../analyses/questionnaire_brain_behavior_slope_ftest/run_adjusted_ftest.ipynb">run_adjusted_ftest.ipynb</a>, <a href="../analyses/questionnaire_brain_behavior_slope_ftest/review_pairwise_comparison_results.ipynb">review_pairwise_comparison_results.ipynb</a><br>
 **Hypothesis:** Some within-questionnaire slopes statistically differ from each other in some parts of the brain.<br>
 **Conclusion:** Still under discussion, but the F-test yielded some significant regions,  some of which overlapped with the regions found in the within-subject brain-behavior analysis with all questions.<br>
 **Notes:** None<br>
-**Status:** ongoing<br>
-**Last Updated:** 2025-11-16<br>
+**Status:** needs review<br>
+**Last Updated:** 2025-12-19<br>
 **Authors:** Jaemon Jumpawong, Jeanette Mumford<br>
 
 ---
