@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-#SBATCH -J randomise_brain_behavior_within_subject
+#SBATCH -J adjusted_randomise_brain_behavior_within_subject
 #SBATCH --time=8:00:00
 #SBATCH --begin=now
 #SBATCH -n 1
@@ -19,4 +19,4 @@ module load contribs
 module load poldrack 
 module load fsl 
 
-bash /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis/output_twosided_onesample_t_test/randomise_call.sh
+bash /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis/output_adjusted_twosided_onesample_t_test/randomise_call.sh
