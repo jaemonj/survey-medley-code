@@ -7,19 +7,23 @@ description: >
 code_dir: "analyses/within_subject_brain_behavior_analysis"
 dependencies: []
 script_entry:
-  - "within_subject_brain_behavior_outlier_analysis.py"
-  - "run_outlier_analysis.batch"
   - "submit_randomise.sh"
+  - "submit_adjusted_randomise.sh"
 notebook_entry:
   - "analyze_brain_behavior_within_subject.ipynb"
+  - "analyze_adjusted_brain_behavior_within_subject.ipynb"
 other_files: []
-results_files: []
+results_files:
+  - "analyze_brain_behavior_within_subject.ipynb"
+  - "analyze_adjusted_brain_behavior_within_subject.ipynb"
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_analysis"
 hypothesis: "Within-subject brain activation linearly relates to their behavioral response."
 conclusion: >
   There are regions with a significant negative correlation between brain activation and behavioral response
-  (across all questions), suggesting that these regions are more activated when giving a response coded as less self-regulated.
-notes: null
-status: "completed"
-last_updated: 2025-11-16
+  (across all questions) that remain when adjusting for question length, suggesting that these regions are more activated when giving a response coded as less self-regulated.
+notes: >
+  The "adjusted" notebook and script differ from the unadjusted in that a regressor for the character count of each survey question is added
+  when estimating the brain/behavior slope.
+status: "needs review"
+last_updated: 2025-12-19
 authors: ["Jaemon Jumpawong", "Jeanette Mumford"]
