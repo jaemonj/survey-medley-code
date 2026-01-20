@@ -5,6 +5,7 @@ import re
 from nilearn.glm.second_level import SecondLevelModel
 import pandas as pd
 import nibabel as nf
+from pathlib import Path
 
 from survey_medley_code.config_loader import load_config
 
@@ -25,11 +26,14 @@ def make_contrast_map(sub_id, events_files, questionnaires, question_output_path
     num_responses = 0
     for questionnaire in questionnaires:
         for question in questionnaires[questionnaire]:
+            good_sub_file = Path(f'{question_output_path}/outlier_assessment/subjects_outlier_percent_lt_8_contrast_{question}.txt')
+            good_sub_list = good_sub_file.read_text().splitlines()
             response = df.loc[df['trial_type'] == question, 'coded_response']
             behavior = response.values[0]
             text = df.loc[df['trial_type'] == question, 'item_text']
             chr_count = len(text.values[0])
-            if not pd.isna(behavior):
+
+            if (not pd.isna(behavior)) and ('s' + sub_id in good_sub_list):
                 question_bold_file = f'{question_output_path}/{sub_id}/contrast_{question}_effect_size_sub_{sub_id}.nii.gz'
                 if question_bold_file in activation_maps:
                     bold_dict[questionnaire].append(question_bold_file)
