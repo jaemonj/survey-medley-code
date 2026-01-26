@@ -9,7 +9,9 @@ garbage/
 # ignore the temporary directory where we're storing code that needs refactoring
 analyses/code_to_refactor/
 analyses/sandbox/
-
+# figures from poster
+analyses/questionnaire_average_multivariate/figures/
+analyses/questionnaire_average_omnibus_f/figures/
 
 # ignore the .venv 
 .venv/
