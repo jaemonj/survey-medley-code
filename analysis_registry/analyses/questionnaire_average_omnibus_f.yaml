@@ -11,8 +11,10 @@ dependencies:
   - "Output files from within_subject_question_estimates analysis"
 script_entry:
   - "randomise scripts are created in group_ftest and each subdirectory of all_paired_t_tests in survey_medley_results/within_subject_question_estimates/"
+  - "review_results_utils.py"
 notebook_entry:
   - "setup_randomise.ipynb"
+  - "setup_randomise_adjusted.ipynb"
   - "review_results.ipynb"
   - "paired_t_test_maps.ipynb"
 results_files:
@@ -23,7 +25,7 @@ other_files:
   - "runs individual paired randomise tests: submis_randomise_all_pairs.batch"
 output_dir: "/oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_question_estimates/within_subject_question_estimates/"
 hypothesis: "Some questionnaire-based average activation estimates will differ from others."
-conclusion: "There is a strong result for the omnibus f-test, but Patrick needs to review the individual paired comparisons."
+conclusion: "There is a strong result for the omnibus f-test, but Patrick needs to review the individual paired comparisons.  Adjustment for character count was impactful."
 notes: >
   The paired comparisons can be used to conclude where differences 
   DO occur, but a lack of a significant paired t-test
