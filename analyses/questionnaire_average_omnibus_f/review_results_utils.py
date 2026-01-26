@@ -34,7 +34,7 @@ def load_mask(mask_path):
     return mask_data, mask_idx, mask_nii.affine, mask_nii.header, mask_nii
 
 
-def create_binary_matrix(tmap_dict, pmap_dict, mask_idx, p_threshold=0.1):
+def create_binary_matrix(tmap_dict, pmap_dict, mask_idx, p_threshold=0.05):
     """
     Create a binary matrix for positive and negative activations from dictionary of maps.
 
@@ -115,6 +115,91 @@ def integer_conjunction_map(binary_matrix, map_labels=None):
 
 
 def plot_integer_map_overlay(
+    integer_map,
+    mask_data,
+    mask_idx,
+    key_map,
+    z_slices,
+    mask_nifti,
+    omnibus_pmap_file,
+    omnibus_threshold=0.05,
+    min_cluster_vox=200,
+    n_voxel_thresh_plot_save=None,
+):
+    """
+    Plot one figure per conjunction of maps if at least one cluster meets min_cluster_vox.
+    Save figure if n_voxels >= n_voxel_thresh_plot_save.
+    """
+    # Reconstruct 3D integer map
+    img_3d = np.zeros(mask_data.shape, dtype=np.int32)
+    img_3d[mask_idx] = integer_map
+
+    # Load omnibus F-test map and threshold
+    omnibus_img = nib.load(omnibus_pmap_file)
+    omnibus_data = omnibus_img.get_fdata()
+    omnibus_binary = (omnibus_data > (1 - omnibus_threshold)).astype(np.int32)
+
+    # Define colormap: 0=background, 1=cluster only, 2=omnibus only, 3=overlap
+    cmap = ListedColormap(['black', 'deepskyblue', 'yellow', 'forestgreen'])
+
+    for val, cols in key_map.items():
+        if val == 0:
+            continue  # skip background
+
+        # Step 1: binary mask for this integer value
+        cluster_mask = (img_3d == val).astype(np.int32)
+
+        # Step 2: check if any cluster meets min_cluster_vox
+        labeled_clusters, n_clusters = ndimage.label(cluster_mask)
+        if n_clusters == 0:
+            continue
+        cluster_sizes = [
+            np.sum(labeled_clusters == cl) for cl in range(1, n_clusters + 1)
+        ]
+        if all(size < min_cluster_vox for size in cluster_sizes):
+            continue
+
+        # Step 3: count all nonzero voxels for figure title
+        n_voxels = np.sum(cluster_mask > 0)
+
+        # Step 4: create overlay map
+        overlay_int = np.zeros(cluster_mask.shape, dtype=np.int32)
+        overlay_int[cluster_mask == 1] = 1
+        overlay_int[(omnibus_binary == 1) & (cluster_mask == 0)] = 2
+        overlay_int[(cluster_mask == 1) & (omnibus_binary == 1)] = 3
+
+        # Step 5: make NIfTI and plot
+        overlay_nifti = nib.Nifti1Image(overlay_int, affine=mask_nifti.affine)
+        label_text = f'Hypotheses: {", ".join(cols)}'
+
+        display = plot_stat_map(
+            overlay_nifti,
+            display_mode='z',
+            cut_coords=z_slices,
+            title=f'{label_text} ({n_voxels} voxels)',
+            colorbar=False,
+            cmap=cmap,
+            symmetric_cbar=False,
+        )
+
+        # Save figure if threshold met
+        if (n_voxel_thresh_plot_save is not None) and (
+            n_voxels >= n_voxel_thresh_plot_save
+        ):
+            # Construct filename based on cols
+            name_raw = '_'.join(cols)
+            fig_name = name_raw.replace(' ', '')
+            out_path = f'./figures/{fig_name}.png'
+
+            plt.savefig(out_path, dpi=300, bbox_inches='tight')
+            print(f'Saved figure: {out_path}')
+
+        plt.show()
+
+        del overlay_int, overlay_nifti, cluster_mask
+
+
+def plot_integer_map_overlay_OLD(
     integer_map,
     mask_data,
     mask_idx,
@@ -206,6 +291,7 @@ def process_pairwise_maps(
     t_threshold=0.05,
     omnibus_f_threshold=0.05,
     min_cluster_vox=200,
+    n_voxel_thresh_plot_save=None,
 ):
     mask_data, mask_idx, affine, header, mask_nii = load_mask(mask_path)
 
@@ -225,4 +311,5 @@ def process_pairwise_maps(
         omnibus_pmap_file,
         omnibus_threshold=omnibus_f_threshold,
         min_cluster_vox=min_cluster_vox,
+        n_voxel_thresh_plot_save=n_voxel_thresh_plot_save,
     )
