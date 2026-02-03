@@ -1,20 +1,19 @@
-from itertools import combinations
-
 import matplotlib.pyplot as plt
 import nibabel as nib
 import numpy as np
+import os
 from matplotlib.colors import ListedColormap
 from nilearn.plotting import plot_stat_map
 from scipy import ndimage
 
 
 def get_p_t_maps(outdir):
-    questionnaire_names = ['brief', 'future_time', 'grit', 'impulsive_venture', 'upps']
+    directory_names = [d.name for d in os.scandir(outdir) if d.is_dir()]
+    pairing_names = [s.replace("paired_test_", "") for s in directory_names if s.startswith("paired_test_")]
     question_pmaps = {}
     question_tmaps = {}
 
-    for qa, qb in combinations(questionnaire_names, 2):
-        pairing_name = f'{qa}_minus_{qb}'
+    for pairing_name in pairing_names:
         paired_pmap_loop = (
             outdir
             / f'paired_test_{pairing_name}/onesample_2sided_tfce_corrp_fstat1.nii.gz'
@@ -66,7 +65,7 @@ def create_binary_matrix(tmap_dict, pmap_dict, mask_idx, p_threshold=0.05):
         # Positive activation
         pos = (tmap_data > 0) & (pmap_data > threshold)
         binary_matrix[:, 2 * i] = pos.astype(np.uint8)
-        map_keys.append(f'{b} < {a}')  # swap for positive sign
+        map_keys.append(f'{b} < {a}')  # swap for positive sign 
 
         # Negative activation
         neg = (tmap_data < 0) & (pmap_data > threshold)
@@ -196,84 +195,6 @@ def plot_integer_map_overlay(
 
         plt.show()
 
-        del overlay_int, overlay_nifti, cluster_mask
-
-
-def plot_integer_map_overlay_OLD(
-    integer_map,
-    mask_data,
-    mask_idx,
-    key_map,
-    z_slices,
-    mask_nifti,
-    omnibus_pmap_file,
-    omnibus_threshold=0.05,
-    min_cluster_vox=200,
-):
-    """
-    Plot one figure per conjunction of maps if at least one cluster meets min_cluster_vox.
-
-    Args:
-        integer_map: 1D array of integer-encoded conjunctions
-        mask_data, mask_idx: mask info
-        key_map: dict mapping integer -> list of map labels
-        z_slices: z coordinates for plotting
-        mask_nifti: NIfTI object for affine info
-        omnibus_pmap_file: NIfTI file for omnibus thresholding
-        omnibus_threshold: threshold for omnibus map
-        min_cluster_vox: minimum cluster size to trigger plotting
-    """
-    # Reconstruct 3D integer map
-    img_3d = np.zeros(mask_data.shape, dtype=np.int32)
-    img_3d[mask_idx] = integer_map
-
-    # Load omnibus F-test map and threshold
-    omnibus_img = nib.load(omnibus_pmap_file)
-    omnibus_data = omnibus_img.get_fdata()
-    omnibus_binary = (omnibus_data > (1 - omnibus_threshold)).astype(np.int32)
-
-    # Define colormap: 0=background, 1=cluster only, 2=omnibus only, 3=overlap
-    cmap = ListedColormap(['black', 'blue', 'lemonchiffon', 'limegreen'])
-
-    for val, cols in key_map.items():
-        if val == 0:
-            continue  # skip background
-
-        # Step 1: binary mask for this integer value
-        cluster_mask = (img_3d == val).astype(np.int32)
-
-        # Step 2: check if any cluster meets min_cluster_vox
-        labeled_clusters, n_clusters = ndimage.label(cluster_mask)
-        if n_clusters == 0:
-            continue  # nothing to plot
-        cluster_sizes = [
-            np.sum(labeled_clusters == cl) for cl in range(1, n_clusters + 1)
-        ]
-        if all(size < min_cluster_vox for size in cluster_sizes):
-            continue  # skip if no cluster is big enough
-
-        # Step 3: count all nonzero voxels for figure title
-        n_voxels = np.sum(cluster_mask > 0)
-
-        # Step 4: create overlay map
-        overlay_int = np.zeros(cluster_mask.shape, dtype=np.int32)
-        overlay_int[cluster_mask == 1] = 1
-        overlay_int[(omnibus_binary == 1) & (cluster_mask == 0)] = 2
-        overlay_int[(cluster_mask == 1) & (omnibus_binary == 1)] = 3
-
-        # Step 5: make NIfTI and plot
-        overlay_nifti = nib.Nifti1Image(overlay_int, affine=mask_nifti.affine)
-        label_text = f'Hypotheses: {", ".join(cols)}'
-        plot_stat_map(
-            overlay_nifti,
-            display_mode='z',
-            cut_coords=z_slices,
-            title=f'{label_text} ({n_voxels} voxels)',
-            colorbar=False,
-            cmap=cmap,
-            symmetric_cbar=False,
-        )
-        plt.show()
         del overlay_int, overlay_nifti, cluster_mask
 
 

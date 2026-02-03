@@ -11,7 +11,6 @@ dependencies:
   - "Output files from within_subject_question_estimates analysis"
 script_entry:
   - "randomise scripts are created in group_ftest and each subdirectory of all_paired_t_tests in survey_medley_results/within_subject_question_estimates/"
-  - "review_results_utils.py"
 notebook_entry:
   - "setup_randomise.ipynb"
   - "setup_randomise_adjusted.ipynb"
@@ -32,5 +31,5 @@ notes: >
   cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer
   questions have less power in these comparisons.
 status: "Results files needs review by Patrick"
-last_updated: 2025-11-25
+last_updated: 2026-2-3
 authors: ["Jeanette Mumford", "Jaemon Jumpawong"]

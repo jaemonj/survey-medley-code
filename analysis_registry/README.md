@@ -219,7 +219,6 @@
 **Dependencies:** Output files from within_subject_question_estimates analysis<br>
 **Script Entry:**
 - randomise scripts are created in group_ftest and each subdirectory of all_paired_t_tests in survey_medley_results/within_subject_question_estimates/
-- review_results_utils.py
 
 **Notebook Entry:**
 - setup_randomise.ipynb
@@ -237,7 +236,7 @@
 **Conclusion:** There is a strong result for the omnibus f-test, but Patrick needs to review the individual paired comparisons.  Adjustment for character count was impactful.<br>
 **Notes:** The paired comparisons can be used to conclude where differences  DO occur, but a lack of a significant paired t-test cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer questions have less power in these comparisons.<br>
 **Status:** Results files needs review by Patrick<br>
-**Last Updated:** 2025-11-25<br>
+**Last Updated:** 2026-2-3<br>
 **Authors:** Jeanette Mumford, Jaemon Jumpawong<br>
 
 ---
