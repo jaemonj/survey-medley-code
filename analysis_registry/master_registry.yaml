@@ -264,22 +264,23 @@
   notebook_entry:
   - brain_behavior_within_subject_by_questionnaire.ipynb
   - adjusted_brain_behavior_within_subject_by_questionnaire.ipynb
+  - inclusion_settings_model_overview.ipynb
   other_files: []
   results_files:
   - brain_behavior_within_subject_by_questionnaire.ipynb
   - adjusted_brain_behavior_within_subject_by_questionnaire.ipynb
+  - inclusion_settings_model_overview.ipynb
   output_dir: oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire
   hypothesis: Some brain/behavior slopes are statistically different between questionnaires.
-  conclusion: "It would be worth running an F-test to determine whether there are\
-    \ in fact brain/behavior slopes that are statistically different between questionnaires.\
-    \ \n"
-  notes: 'The "adjusted" notebook and scripts differ from the unadjusted in that a
-    regressor for the character count of each survey question is added when estimating
-    the brain/behavior slope.
+  conclusion: 'It would be worth running an F-test to determine whether there are
+    in fact brain/behavior slopes that are statistically different between questionnaires.
+
+    '
+  notes: 'Slope estimates are adjusted for the character counts of each survey question.
 
     '
   status: needs review
-  last_updated: 2025-12-19
+  last_updated: 2026-02-18
   authors:
   - Jaemon Jumpawong
   - Jeanette Mumford
