@@ -9,9 +9,11 @@ dependencies: []
 script_entry: []
 notebook_entry:
   - "events_data_explore.ipynb"
+  - "behavior_by_questionnaire.ipynb"
 other_files: []
 results_files:
   - "events_data_explore.ipynb"
+  - "behavior_by_questionnaire.ipynb"
 output_dir: []
 hypothesis: "Who has high motion, Question responses vary by question/subject, RTs vary by question word count "
 conclusion: >
