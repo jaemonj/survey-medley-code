@@ -8,18 +8,15 @@ code_dir: "analyses/within_subject_brain_behavior_by_questionnaire"
 dependencies:
     - "Output files from within_subject_question_estimates analysis"
 script_entry:
-    - "subject_contrasts_brain_behavior_within_subject_by_questionnaire.py"
-    - "submit_subject_contrasts.batch"
-    - "adjusted_subject_contrasts.py"
-    - "submit_adjusted_subject_contrasts.batch"
+    - "submit_slope_model.batch"
+    - "subject_slope_contrasts.py"
 notebook_entry:
+    - "glm_setup.ipynb"
     - "brain_behavior_within_subject_by_questionnaire.ipynb"
-    - "adjusted_brain_behavior_within_subject_by_questionnaire.ipynb"
     - "inclusion_settings_model_overview.ipynb"
 other_files: []
 results_files:
     - "brain_behavior_within_subject_by_questionnaire.ipynb"
-    - "adjusted_brain_behavior_within_subject_by_questionnaire.ipynb"
     - "inclusion_settings_model_overview.ipynb"
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_brain_behavior_by_questionnaire"
 hypothesis: "Some brain/behavior slopes are statistically different between questionnaires."
@@ -28,5 +25,5 @@ conclusion: >
 notes: >
     Slope estimates are adjusted for the character counts of each survey question.
 status: "needs review"
-last_updated: 2026-02-18
+last_updated: 2026-03-02
 authors: ["Jaemon Jumpawong", "Jeanette Mumford"]

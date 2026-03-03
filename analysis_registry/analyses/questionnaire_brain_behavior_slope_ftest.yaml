@@ -3,35 +3,25 @@ name: "Assess how within-subject brain-behavior slopes differ between questionna
 stage: "group"
 description: >
     Using randomise, run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire 
-    to see whether any within-questionnaire slopes are statistically different from each other. Individual paired t-tests for all 10 pairs of 
-    questionnaires are also run in order to help understand the F-test results. F-test and paired t-tests are run with and without adjusting for length of questions.
+    to see whether any within-questionnaire slopes are statistically different from each other. 
 code_dir: "analyses/questionnaire_brain_behavior_slope_ftest"
 dependencies: 
     - "Output files from within_subject_brain_behavior_by_questionnaire analysis"
 script_entry: 
-    - "randomise scripts are created in group_ftest and each subdirectory of all_paired_t_tests and all_adjusted_paired_t_tests in 
+    - "randomise scripts are created in each output_glm_ftest subdirectory in 
       survey_medley_results/within_subject_brain_behavior_by_questionnaire/"
 notebook_entry:
     - "run_ftest.ipynb"
-    - "run_adjusted_ftest.ipynb"
-    - "setup_pairwise_comparisons.ipynb"
-    - "setup_pairwise_comparisons_adjusted.ipynb"
-    - "review_pairwise_comparison_results.ipynb"
 other_files: 
-    - "runs F-test randomise script: submit_randomise.sh"
-    - "runs adjusted F-test randomise script: submit_adjusted_randomise.sh"
-    - "runs individual paired randomise tests: submit_randomise_all_pairs.batch"
-    - "runs adjusted individual paired randomise tests: submit_adjusted_randomise_all_pairs.batch"
+    - "submit_randomise_min_obs_5_min_unique_2_min_obs_binary_2.sh"
+    - "submit_randomise_min_obs_5_min_unique_3_min_obs_binary_None.sh"
+    - "submit_randomise_min_obs_6_min_unique_3_min_obs_binary_None.sh"
 results_files: 
     - "run_ftest.ipynb"
-    - "run_adjusted_ftest.ipynb"
-    - "review_pairwise_comparison_results.ipynb"
 output_dir: "oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/questionnaire_brain_behavior_slope_ftest"
 hypothesis: "Some within-questionnaire slopes statistically differ from each other in some parts of the brain."
-conclusion: >
-    Still under discussion, but the F-test yielded some significant regions, 
-    some of which overlapped with the regions found in the within-subject brain-behavior analysis with all questions.
+conclusion: "Within-questionnaire slopes do not statistically differ."
 notes: null
 status: "needs review"
-last_updated: 2025-12-19
+last_updated: 2025-03-02
 authors: ["Jaemon Jumpawong", "Jeanette Mumford"]
