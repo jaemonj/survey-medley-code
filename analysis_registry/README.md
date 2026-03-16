@@ -20,6 +20,7 @@
 <tr><td>questionnaire average multivariate</td><td>Using the 10 pairwise difference activation maps, run PCA to see whether  there spatial patterns in which the contrasts differ, summarizing how groups  of voxels vary together across all pairwise comparisons.</td><td>Results file needs review by Patrick and Jaemon</td><td><a href="../analyses/questionnaire_average_multivariate/paired_test_pca.ipynb">paired_test_pca.ipynb</a></td><td>Jeanette has written a guide/explainer at the top of the results_file entry to aid in  understanding and interpreting the PCA results.</td></tr>
 <tr><td>questionnaire average omnibus f</td><td>We use randomise to run an omnibus f-test to test whether any pair of questionaire average activations differ from each other.  The permutation scheme adjusts for the correlations between measures within-subject in the group model (model mean adjusts by subject as well).  Individual paired t-tests for all 10 pairs of  questionnaires are also run in an effort to help understand the f-test results.</td><td>Results files needs review by Patrick</td><td><a href="../analyses/questionnaire_average_omnibus_f/review_results.ipynb">review_results.ipynb</a>, <a href="../analyses/questionnaire_average_omnibus_f/paired_t_test_maps.ipynb">paired_t_test_maps.ipynb</a></td><td>The paired comparisons can be used to conclude where differences  DO occur, but a lack of a significant paired t-test cannot be used to conclude two questionnaires are the same.  Keep in mind that questionnaires with fewer questions have less power in these comparisons.</td></tr>
 <tr><td>questionnaire brain behavior slope ftest</td><td>Using randomise, run an F-test on the within-subject slopes between brain activation and behavioral response for each questionnaire  to see whether any within-questionnaire slopes are statistically different from each other.</td><td>needs review</td><td><a href="../analyses/questionnaire_brain_behavior_slope_ftest/run_ftest.ipynb">run_ftest.ipynb</a></td><td>None</td></tr>
+<tr><td>unified model questionnaire average omnibus f</td><td>We use randomise to run an omnibus f-test to test whether any pair of unified-model questionnaire average activations differ from each other. The permutation scheme adjusts for within-subject correlations in the group model. Individual paired t-tests for all questionnaire pairs are also run to help interpret omnibus f-test results.</td><td>results generated; review pending</td><td><a href="../analyses/unified_model_questionnaire_average_omnibus_f/setup_randomise_unified.ipynb">setup_randomise_unified.ipynb</a>, <a href="../analyses/unified_model_questionnaire_average_omnibus_f/review_results_unified.ipynb">review_results_unified.ipynb</a></td><td>Paired comparisons help localize where differences occur. A non-significant paired t-test should not be interpreted as evidence that two questionnaires are the same.</td></tr>
 </table>
 
 
@@ -265,5 +266,32 @@
 **Status:** needs review<br>
 **Last Updated:** 2025-03-02<br>
 **Authors:** Jaemon Jumpawong, Jeanette Mumford<br>
+
+---
+
+### unified_model_questionnaire_average_omnibus_f
+**Name:** Run and process unified-model omnibus f comparing all pairs of questionnaire average activation estimates<br>
+**Description:** We use randomise to run an omnibus f-test to test whether any pair of unified-model questionnaire average activations differ from each other. The permutation scheme adjusts for within-subject correlations in the group model. Individual paired t-tests for all questionnaire pairs are also run to help interpret omnibus f-test results.<br>
+**Code Directory:** analyses/unified_model_questionnaire_average_omnibus_f<br>
+**Dependencies:** Output files from within_subject_unified_model analysis<br>
+**Script Entry:**
+- setup scripts are created in group_f_test and all_paired_t_tests under survey_medley_results/within_subject_unified_model/
+
+**Notebook Entry:**
+- setup_randomise_unified.ipynb
+- review_results_unified.ipynb
+
+**Other Files:**
+- runs f-test randomise script: submit_randomise.batch
+- runs individual paired randomise tests: submit_randomise_all_pairs.batch
+
+**Output Directory:** /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_unified_model/<br>
+**Results Files:** <a href="../analyses/unified_model_questionnaire_average_omnibus_f/setup_randomise_unified.ipynb">setup_randomise_unified.ipynb</a>, <a href="../analyses/unified_model_questionnaire_average_omnibus_f/review_results_unified.ipynb">review_results_unified.ipynb</a><br>
+**Hypothesis:** Some unified-model questionnaire-based average activation estimates will differ from others.<br>
+**Conclusion:** Omnibus f-test and paired comparisons are generated; paired results should be reviewed for interpretation.<br>
+**Notes:** Paired comparisons help localize where differences occur. A non-significant paired t-test should not be interpreted as evidence that two questionnaires are the same.<br>
+**Status:** results generated; review pending<br>
+**Last Updated:** 2026-3-16<br>
+**Authors:** Jeanette Mumford, Jaemon Jumpawong<br>
 
 ---

@@ -194,6 +194,46 @@
   authors:
   - Jaemon Jumpawong
   - Jeanette Mumford
+- id: unified_model_questionnaire_average_omnibus_f
+  name: Run and process unified-model omnibus f comparing all pairs of questionnaire
+    average activation estimates
+  stage: group
+  description: 'We use randomise to run an omnibus f-test to test whether any pair
+    of unified-model questionnaire average activations differ from each other. The
+    permutation scheme adjusts for within-subject correlations in the group model.
+    Individual paired t-tests for all questionnaire pairs are also run to help interpret
+    omnibus f-test results.
+
+    '
+  code_dir: analyses/unified_model_questionnaire_average_omnibus_f
+  dependencies:
+  - Output files from within_subject_unified_model analysis
+  script_entry:
+  - setup scripts are created in group_f_test and all_paired_t_tests under survey_medley_results/within_subject_unified_model/
+  notebook_entry:
+  - setup_randomise_unified.ipynb
+  - review_results_unified.ipynb
+  results_files:
+  - setup_randomise_unified.ipynb
+  - review_results_unified.ipynb
+  other_files:
+  - 'runs f-test randomise script: submit_randomise.batch'
+  - 'runs individual paired randomise tests: submit_randomise_all_pairs.batch'
+  output_dir: /oak/stanford/groups/russpold/data/uh2/aim1/derivatives/survey_medley_results/within_subject_unified_model/
+  hypothesis: Some unified-model questionnaire-based average activation estimates
+    will differ from others.
+  conclusion: Omnibus f-test and paired comparisons are generated; paired results
+    should be reviewed for interpretation.
+  notes: 'Paired comparisons help localize where differences occur. A non-significant
+    paired t-test should not be interpreted as evidence that two questionnaires are
+    the same.
+
+    '
+  status: results generated; review pending
+  last_updated: 2026-3-16
+  authors:
+  - Jeanette Mumford
+  - Jaemon Jumpawong
 - id: within_subject_brain_behavior_analysis
   name: Assess within-subject brain-behavior correlations
   stage: time series
